@@ -38,18 +38,16 @@ $asyncwindow = Add-Type -MemberDefinition $windowcode -name Win32ShowWindowAsync
     $watcher.IncludeSubdirectories = $true
     $watcher.EnableRaisingEvents = $true  
 
-$null = [System.Windows.Forms.MessageBox]::Show("Test",1)
 ### DEFINE ACTIONS AFTER AN EVENT IS DETECTED
     $action = {
         $name = $Event.SourceEventArgs.Name 
-        $null = [System.Windows.Forms.MessageBox]::Show("$name",1)
         if(-Not $name.StartsWith(".git"))
         {
             $changeType = $Event.SourceEventArgs.ChangeType
             $commitMessage = "$(Get-Date), File $changeType, $name"
             git add .
             git commit -m $commitMessage
-            #git push
+            git push
         }
     }    
 ### DECIDE WHICH EVENTS SHOULD BE WATCHED 
