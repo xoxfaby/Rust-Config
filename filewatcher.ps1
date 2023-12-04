@@ -19,7 +19,7 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 
 # When Exit is clicked, close everything and kill the PowerShell process
 $Menu_Exit.add_Click({
-    New-Event -SourceIdentifier ClosePlease -Sender windows.timer -MessageData "Test"
+    New-Event -SourceIdentifier "ClosePlease" -Sender windows.timer -MessageData "Test"
  })
 
  
@@ -56,7 +56,7 @@ $null = $asyncwindow::ShowWindowAsync((Get-Process -PID $pid).MainWindowHandle, 
 ### WAIT FOR EVENT
     while ($true) {
         $res = Wait-Event
-        if($res.SourceIdentifier = ClosePlease){
+        if($res.SourceIdentifier = "ClosePlease"){
             $Main_Tool_Icon.Visible = $false
             $window.Close()
             Stop-Process $pid
