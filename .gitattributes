@@ -1,1 +1,1 @@
-client.cfg filter=filterFOV
+client.cfg filter=filterDynamicSettings
