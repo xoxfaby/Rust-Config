@@ -1,0 +1,4 @@
+client.cfg filter=filterFOV
+
+[filter "filterFOV"]
+    clean=sed -e 's/graphics.fov "90"/graphics.fov "70"/'
