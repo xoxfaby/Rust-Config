@@ -21,7 +21,7 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
     $window.Close()
-    Stop-Job -Name "keepAwake"
+    New-Event -SourceIdentifier Timer -Sender windows.timer -MessageData "Test"
     Stop-Process $pid
  })
 
