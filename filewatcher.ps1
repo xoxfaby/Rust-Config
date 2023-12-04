@@ -21,7 +21,7 @@ $Main_Tool_Icon.contextMenu.MenuItems.AddRange($Menu_Exit)
 $Menu_Exit.add_Click({
     $Main_Tool_Icon.Visible = $false
     $window.Close()
-    New-Event -SourceIdentifier Timer -Sender windows.timer -MessageData "Test"
+    New-Event -SourceIdentifier ClosePlease -Sender windows.timer -MessageData "Test"
     Stop-Process $pid
  })
 
@@ -57,5 +57,10 @@ $null = $asyncwindow::ShowWindowAsync((Get-Process -PID $pid).MainWindowHandle, 
     Register-ObjectEvent $watcher "Renamed" -Action $action
 
 ### WAIT FOR EVENT
-    while ($true) {Wait-Event}
+    while ($true) {
+        $res = Wait-Event
+        if($res.SourceIdentifier = ClosePlease){
+            break
+        }
+    }
 
