@@ -41,7 +41,7 @@ $null = $asyncwindow::ShowWindowAsync((Get-Process -PID $pid).MainWindowHandle, 
 ### DEFINE ACTIONS AFTER AN EVENT IS DETECTED
     $action = {
         $name = $Event.SourceEventArgs.Name 
-        if(-Not $name.StartsWith(".git\\"))
+        if(-Not $name.StartsWith(".git\"))
         {
             $changeType = $Event.SourceEventArgs.ChangeType
             $commitMessage = "$(Get-Date), File $changeType, $name"
