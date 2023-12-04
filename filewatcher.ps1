@@ -50,7 +50,7 @@ $null = $asyncwindow::ShowWindowAsync((Get-Process -PID $pid).MainWindowHandle, 
             git push
         }
     }    
-### DECIDE WHICH EVENTS SHOULD BE WATCHED 
+### DECIDE WHICH EVENTS SHOULD BE WATCHED  
     Register-ObjectEvent $watcher "Created" -Action $action
     Register-ObjectEvent $watcher "Changed" -Action $action
     Register-ObjectEvent $watcher "Deleted" -Action $action
