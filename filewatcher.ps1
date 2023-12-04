@@ -55,5 +55,7 @@ $null = $asyncwindow::ShowWindowAsync((Get-Process -PID $pid).MainWindowHandle, 
     Register-ObjectEvent $watcher "Changed" -Action $action
     Register-ObjectEvent $watcher "Deleted" -Action $action
     Register-ObjectEvent $watcher "Renamed" -Action $action
+
+### WAIT FOR EVENT
     while ($true) {Wait-Event}
 
